@@ -11,7 +11,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const CRYPTO_PAY_TOKEN = process.env.CRYPTO_PAY_TOKEN;
 const ADMIN_ID = process.env.ADMIN_ID;
 const PORT = process.env.PORT || 3000;
-const WEBAPP_URL = process.env.WEBAPP_URL || 'https://asterixOTC.onrender.com';
+const WEBAPP_URL = process.env.WEBAPP_URL || 'https://your-app.onrender.com';
 
 if (!BOT_TOKEN || !CRYPTO_PAY_TOKEN) {
   console.error('❌ Missing BOT_TOKEN or CRYPTO_PAY_TOKEN');
@@ -116,7 +116,7 @@ db.serialize(() => {
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));  // ← РАЗДАЁМ ВСЁ ИЗ КОРНЯ
+app.use(express.static(__dirname));
 
 // ===== TELEGRAM BOT =====
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
@@ -163,7 +163,8 @@ app.get('/api/user/:telegramId', (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!user) {
       const refCode = generateRefCode();
-      db.run(`INSERT INTO users (telegram_id, ref_code, created_at) VALUES (?, ?, ?)`,
+      db.run(
+        `INSERT OR IGNORE INTO users (telegram_id, ref_code, created_at) VALUES (?, ?, ?)`,
         [telegramId, refCode, Date.now()],
         function(err) {
           if (err) return res.status(500).json({ error: err.message });
@@ -801,7 +802,7 @@ app.post('/webhook/cryptopay', (req, res) => {
 });
 
 // ============================================================
-// BOT COMMANDS
+// BOT COMMANDS — ИСПРАВЛЕННЫЙ!
 // ============================================================
 
 bot.onText(/\/start(?:\s+(.+))?/, (msg, match) => {
@@ -810,12 +811,27 @@ bot.onText(/\/start(?:\s+(.+))?/, (msg, match) => {
   const firstName = msg.from.first_name || 'Trader';
 
   db.get(`SELECT * FROM users WHERE telegram_id = ?`, [userId], (err, user) => {
+    if (err) {
+      console.error('Database error:', err);
+      return;
+    }
+    
     if (!user) {
       const refCode = generateRefCode();
       db.run(
-        `INSERT INTO users (telegram_id, username, first_name, last_name, ref_code, created_at)
+        `INSERT OR IGNORE INTO users (telegram_id, username, first_name, last_name, ref_code, created_at)
          VALUES (?, ?, ?, ?, ?, ?)`,
-        [userId, msg.from.username || '', firstName, msg.from.last_name || '', refCode, Date.now()]
+        [userId, msg.from.username || '', firstName, msg.from.last_name || '', refCode, Date.now()],
+        function(err) {
+          if (err) {
+            console.error('Insert error:', err);
+          }
+        }
+      );
+    } else {
+      db.run(
+        `UPDATE users SET username = ?, first_name = ?, last_name = ? WHERE telegram_id = ?`,
+        [msg.from.username || '', firstName, msg.from.last_name || '', userId]
       );
     }
   });
@@ -872,7 +888,7 @@ bot.on('callback_query', (query) => {
 });
 
 // ============================================================
-// SERVE — ГЛАВНАЯ СТРАНИЦА
+// SERVE
 // ============================================================
 
 app.get('/', (req, res) => {
