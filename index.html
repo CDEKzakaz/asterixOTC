@@ -1,0 +1,3471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SWILL OTC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0c0c0e;
+            --bg-card: rgba(255,255,255,0.06);
+            --bg-elevated: rgba(255,255,255,0.08);
+            --bg-tab: rgba(28,28,30,0.92);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-tertiary: rgba(255,255,255,0.3);
+            --border-color: rgba(255,255,255,0.08);
+            --accent: #007aff;
+            --accent-dim: rgba(0,122,255,0.15);
+            --shadow: 0 20px 60px rgba(0,0,0,0.8);
+            --gradient-start: #007aff;
+            --gradient-end: #5856d6;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(0,0,0,0.7);
+        }
+        [data-theme="light"] {
+            --bg-primary: #f2f2f7;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255,255,255,0.8);
+            --bg-elevated: rgba(0,0,0,0.04);
+            --bg-tab: rgba(242,242,247,0.92);
+            --text-primary: #000000;
+            --text-secondary: rgba(0,0,0,0.5);
+            --text-tertiary: rgba(0,0,0,0.25);
+            --border-color: rgba(0,0,0,0.06);
+            --shadow: 0 20px 60px rgba(0,0,0,0.08);
+            --accent: #007aff;
+            --accent-dim: rgba(0,122,255,0.1);
+            --gradient-start: #007aff;
+            --gradient-end: #5856d6;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(0,0,0,0.4);
+        }
+        [data-theme="midnight"] {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #12122a;
+            --bg-card: rgba(40,40,80,0.4);
+            --bg-elevated: rgba(60,60,120,0.3);
+            --bg-tab: rgba(10,10,26,0.92);
+            --text-primary: #e8e8ff;
+            --text-secondary: rgba(200,200,255,0.5);
+            --text-tertiary: rgba(200,200,255,0.25);
+            --border-color: rgba(100,100,200,0.15);
+            --accent: #6c5ce7;
+            --accent-dim: rgba(108,92,231,0.2);
+            --shadow: 0 20px 60px rgba(0,0,20,0.8);
+            --gradient-start: #6c5ce7;
+            --gradient-end: #a29bfe;
+            --success: #00d47e;
+            --danger: #ff6b6b;
+            --warning: #ff9f43;
+            --modal-bg: rgba(10,10,26,0.8);
+        }
+        [data-theme="forest"] {
+            --bg-primary: #0a1a0a;
+            --bg-secondary: #0f2a0f;
+            --bg-card: rgba(30,60,30,0.4);
+            --bg-elevated: rgba(50,100,50,0.3);
+            --bg-tab: rgba(10,26,10,0.92);
+            --text-primary: #e0ffe0;
+            --text-secondary: rgba(180,255,180,0.5);
+            --text-tertiary: rgba(180,255,180,0.25);
+            --border-color: rgba(60,180,60,0.15);
+            --accent: #00d47e;
+            --accent-dim: rgba(0,212,126,0.2);
+            --shadow: 0 20px 60px rgba(0,20,0,0.8);
+            --gradient-start: #00d47e;
+            --gradient-end: #00b894;
+            --success: #00d47e;
+            --danger: #ff6b6b;
+            --warning: #ff9f43;
+            --modal-bg: rgba(10,26,10,0.8);
+        }
+        [data-theme="sunset"] {
+            --bg-primary: #1a0a0a;
+            --bg-secondary: #2a1212;
+            --bg-card: rgba(60,30,30,0.4);
+            --bg-elevated: rgba(120,50,50,0.3);
+            --bg-tab: rgba(26,10,10,0.92);
+            --text-primary: #ffe0e0;
+            --text-secondary: rgba(255,180,180,0.5);
+            --text-tertiary: rgba(255,180,180,0.25);
+            --border-color: rgba(200,80,80,0.15);
+            --accent: #ff6b6b;
+            --accent-dim: rgba(255,107,107,0.2);
+            --shadow: 0 20px 60px rgba(20,0,0,0.8);
+            --gradient-start: #ff6b6b;
+            --gradient-end: #ff9f43;
+            --success: #00d47e;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(26,10,10,0.8);
+        }
+        [data-theme="ocean"] {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #0a1a2a;
+            --bg-card: rgba(20,60,100,0.3);
+            --bg-elevated: rgba(40,100,180,0.2);
+            --bg-tab: rgba(10,10,26,0.92);
+            --text-primary: #e0f0ff;
+            --text-secondary: rgba(180,220,255,0.5);
+            --text-tertiary: rgba(180,220,255,0.25);
+            --border-color: rgba(60,160,255,0.15);
+            --accent: #00b4ff;
+            --accent-dim: rgba(0,180,255,0.2);
+            --shadow: 0 20px 60px rgba(0,0,30,0.8);
+            --gradient-start: #00b4ff;
+            --gradient-end: #0077ff;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(10,10,26,0.8);
+        }
+        [data-theme="rose"] {
+            --bg-primary: #1a0a12;
+            --bg-secondary: #2a1220;
+            --bg-card: rgba(80,30,50,0.3);
+            --bg-elevated: rgba(160,50,80,0.2);
+            --bg-tab: rgba(26,10,18,0.92);
+            --text-primary: #ffe0ec;
+            --text-secondary: rgba(255,180,210,0.5);
+            --text-tertiary: rgba(255,180,210,0.25);
+            --border-color: rgba(200,60,120,0.15);
+            --accent: #ff2d78;
+            --accent-dim: rgba(255,45,120,0.2);
+            --shadow: 0 20px 60px rgba(30,0,10,0.8);
+            --gradient-start: #ff2d78;
+            --gradient-end: #ff6b9d;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(26,10,18,0.8);
+        }
+        [data-theme="space"] {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #0f0f2a;
+            --bg-card: rgba(30,20,80,0.3);
+            --bg-elevated: rgba(60,40,160,0.2);
+            --bg-tab: rgba(10,10,26,0.92);
+            --text-primary: #e8e0ff;
+            --text-secondary: rgba(200,180,255,0.5);
+            --text-tertiary: rgba(200,180,255,0.25);
+            --border-color: rgba(120,80,255,0.15);
+            --accent: #7c4dff;
+            --accent-dim: rgba(124,77,255,0.2);
+            --shadow: 0 20px 60px rgba(20,0,40,0.8);
+            --gradient-start: #7c4dff;
+            --gradient-end: #b388ff;
+            --success: #00d47e;
+            --danger: #ff6b6b;
+            --warning: #ff9f43;
+            --modal-bg: rgba(10,10,26,0.8);
+        }
+        [data-theme="gold"] {
+            --bg-primary: #1a120a;
+            --bg-secondary: #2a1a0a;
+            --bg-card: rgba(80,50,20,0.3);
+            --bg-elevated: rgba(160,100,30,0.2);
+            --bg-tab: rgba(26,18,10,0.92);
+            --text-primary: #fff0d0;
+            --text-secondary: rgba(255,220,180,0.5);
+            --text-tertiary: rgba(255,220,180,0.25);
+            --border-color: rgba(200,160,60,0.15);
+            --accent: #ffb300;
+            --accent-dim: rgba(255,179,0,0.2);
+            --shadow: 0 20px 60px rgba(30,20,0,0.8);
+            --gradient-start: #ffb300;
+            --gradient-end: #ffd740;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(26,18,10,0.8);
+        }
+        [data-theme="mono"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-elevated: rgba(255,255,255,0.06);
+            --bg-tab: rgba(18,18,18,0.92);
+            --text-primary: #e8e8e8;
+            --text-secondary: rgba(255,255,255,0.4);
+            --text-tertiary: rgba(255,255,255,0.2);
+            --border-color: rgba(255,255,255,0.05);
+            --accent: #888888;
+            --accent-dim: rgba(255,255,255,0.05);
+            --shadow: 0 20px 60px rgba(0,0,0,0.9);
+            --gradient-start: #666666;
+            --gradient-end: #999999;
+            --success: #34c759;
+            --danger: #ff3b30;
+            --warning: #ff9500;
+            --modal-bg: rgba(18,18,18,0.9);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: calc(80px + env(safe-area-inset-bottom, 20px));
+            transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 0.5px solid var(--border-color);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            min-height: 52px;
+            transition: background 0.5s;
+        }
+        .header-back {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            line-height: 1;
+            font-weight: 300;
+        }
+        .header-back.visible {
+            display: block;
+        }
+        .header-back:active {
+            transform: scale(0.9);
+        }
+        .header-title {
+            font-size: 17px;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .header-btn {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-color);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+        .header-btn:active {
+            transform: scale(0.88);
+            background: var(--bg-elevated);
+        }
+        .header-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            fill: none;
+        }
+        .theme-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            border: 1.5px solid var(--bg-primary);
+            transition: background 0.5s;
+        }
+
+        .page {
+            display: none;
+            padding: 16px 20px 20px;
+            animation: fadeSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .balance-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            border: 0.5px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        .balance-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .balance-label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+        .balance-value {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-top: 4px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .balance-value .currency {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+        }
+        .balance-change {
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 40px;
+            background: var(--bg-elevated);
+            position: relative;
+            z-index: 1;
+        }
+        .balance-change.positive {
+            color: var(--success);
+        }
+        .balance-change.negative {
+            color: var(--danger);
+        }
+
+        .currency-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .currency-selector button {
+            padding: 4px 12px;
+            border-radius: 30px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .currency-selector button.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .currency-selector button:active {
+            transform: scale(0.92);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 18px;
+            padding: 18px 8px;
+            text-align: center;
+            border: 0.5px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 18px;
+        }
+        .menu-item:active {
+            transform: scale(0.94);
+        }
+        .menu-item:active::after {
+            opacity: 0.05;
+        }
+        .menu-item .icon-wrap {
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        .menu-item .icon-wrap svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--text-secondary);
+            stroke-width: 1.8;
+            fill: none;
+        }
+        .menu-item .label {
+            font-size: 12px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        .menu-item .badge {
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 8px;
+            font-weight: 600;
+            padding: 1px 8px;
+            border-radius: 40px;
+            margin-left: 2px;
+            border: 0.5px solid var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+        .menu-item.full {
+            grid-column: span 3;
+        }
+
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-tab);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-top: 0.5px solid var(--border-color);
+            display: flex;
+            padding: 4px 0 calc(4px + env(safe-area-inset-bottom, 20px));
+            z-index: 200;
+            justify-content: space-around;
+            transition: background 0.5s;
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: 9px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: all 0.3s;
+            min-width: 44px;
+            font-family: inherit;
+            position: relative;
+        }
+        .tab-item.active {
+            color: var(--accent);
+        }
+        .tab-item svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            fill: none;
+            transition: all 0.3s;
+        }
+        .tab-item .tab-badge {
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 600;
+            border-radius: 40px;
+            padding: 1px 7px;
+            position: absolute;
+            top: -2px;
+            right: -4px;
+            min-width: 16px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        .tab-item .tab-label {
+            font-size: 9px;
+            letter-spacing: 0.2px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 8px 30px var(--accent-dim);
+            transition: all 0.5s;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .profile-id {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        .profile-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .profile-stat {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            border: 0.5px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        .profile-stat .num {
+            font-size: 22px;
+            font-weight: 700;
+            display: block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .profile-stat .label {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+        .profile-rating {
+            text-align: center;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+        .profile-rating .star {
+            color: var(--warning);
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-dim);
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+        .form-select {
+            appearance: none;
+            cursor: pointer;
+        }
+        .form-select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border-radius: 60px;
+            border: none;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            box-shadow: 0 4px 20px var(--accent-dim);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        .btn-primary:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        .btn-secondary {
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-secondary:active {
+            transform: scale(0.96);
+            background: var(--bg-elevated);
+        }
+        .btn-secondary svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        .btn-danger {
+            padding: 14px;
+            border-radius: 60px;
+            border: 0.5px solid rgba(255, 59, 48, 0.3);
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--danger);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-danger:active {
+            transform: scale(0.96);
+            background: rgba(255, 59, 48, 0.2);
+        }
+        .btn-danger svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        .btn-success {
+            padding: 14px;
+            border-radius: 60px;
+            border: 0.5px solid rgba(52, 199, 89, 0.3);
+            background: rgba(52, 199, 89, 0.1);
+            color: var(--success);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-success:active {
+            transform: scale(0.96);
+            background: rgba(52, 199, 89, 0.2);
+        }
+        .btn-success svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .deal-item {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            border: 0.5px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-item:active {
+            transform: scale(0.97);
+            background: var(--bg-elevated);
+        }
+        .deal-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0.5;
+        }
+        .deal-item .deal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .deal-item .deal-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .deal-item .deal-amount {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--accent);
+        }
+        .deal-item .deal-meta {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .deal-item .deal-status {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 12px;
+            border-radius: 40px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .deal-item .deal-status.completed {
+            background: rgba(52, 199, 89, 0.12);
+            color: var(--success);
+        }
+        .deal-item .deal-status.active {
+            background: rgba(255, 149, 0, 0.12);
+            color: var(--warning);
+        }
+        .deal-item .deal-status.cancelled {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--danger);
+        }
+        .deal-item .deal-status.escrow {
+            background: rgba(0, 122, 255, 0.12);
+            color: var(--accent);
+        }
+        .deal-item .deal-status.dispute {
+            background: rgba(255, 59, 48, 0.15);
+            color: var(--danger);
+        }
+        .deal-item .deal-status.declined {
+            background: rgba(255, 149, 0, 0.1);
+            color: var(--warning);
+        }
+        .deal-item .deal-role {
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 40px;
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+        }
+
+        .chat-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            height: 400px;
+            display: none;
+            flex-direction: column;
+            border: 0.5px solid var(--border-color);
+            overflow: hidden;
+            margin-top: 16px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 14px;
+            animation: fadeSlide 0.3s ease;
+        }
+        .chat-message.my {
+            align-self: flex-end;
+            background: var(--accent);
+            color: #fff;
+        }
+        .chat-message.other {
+            align-self: flex-start;
+            background: var(--bg-elevated);
+        }
+        .chat-message .msg-time {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+        .chat-input {
+            display: flex;
+            padding: 12px;
+            border-top: 0.5px solid var(--border-color);
+            gap: 8px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 30px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-input button svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .requisite-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border: 0.5px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .requisite-item .req-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .requisite-item .req-label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .requisite-item .req-value {
+            font-size: 12px;
+            color: var(--text-secondary);
+            word-break: break-all;
+            margin-top: 2px;
+        }
+        .requisite-item .req-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        .requisite-item .req-copy {
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 0.5px solid var(--accent);
+            transition: all 0.2s;
+        }
+        .requisite-item .req-copy:active {
+            transform: scale(0.9);
+            background: var(--accent);
+            color: #fff;
+        }
+        .requisite-item .req-delete {
+            color: var(--danger);
+            background: rgba(255, 59, 48, 0.08);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 0.5px solid rgba(255, 59, 48, 0.15);
+            transition: all 0.2s;
+        }
+        .requisite-item .req-delete:active {
+            transform: scale(0.9);
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .toast {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-30px);
+            background: var(--bg-card);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 0.5px solid var(--border-color);
+            box-shadow: var(--shadow);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 999;
+            pointer-events: none;
+            max-width: 340px;
+            text-align: center;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-tertiary);
+        }
+        .empty-state .sub {
+            font-size: 13px;
+        }
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--text-tertiary);
+            stroke-width: 1.5;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .referral-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 18px 20px;
+            border: 0.5px solid var(--border-color);
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+        .referral-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .referral-stat {
+            color: var(--text-tertiary);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .referral-stat strong {
+            color: var(--text-primary);
+            font-weight: 600;
+            display: block;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+        .referral-link-block {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: var(--bg-secondary);
+            border-radius: 60px;
+            padding: 4px 4px 4px 16px;
+            border: 0.5px solid var(--border-color);
+        }
+        .referral-link-block .link-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex: 1;
+            word-break: break-all;
+        }
+        .copy-action {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 0.5px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            font-family: inherit;
+        }
+        .copy-action:active {
+            transform: scale(0.92);
+            background: var(--accent);
+            color: #fff;
+        }
+        .copy-action svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        .referral-hint {
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--text-tertiary);
+            text-align: center;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .theme-card {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 16px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .theme-card:active {
+            transform: scale(0.95);
+        }
+        .theme-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-dim);
+        }
+        .theme-card .preview {
+            width: 100%;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            gap: 6px;
+            padding: 6px;
+            margin-bottom: 8px;
+        }
+        .theme-card .preview .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .theme-card .theme-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .blacklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 0.5px solid var(--border-color);
+        }
+        .blacklist-item .bl-user {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .blacklist-item .bl-unblock {
+            padding: 4px 14px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .blacklist-item .bl-unblock:active {
+            transform: scale(0.9);
+        }
+
+        .admin-badge {
+            background: var(--danger);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .admin-panel {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 16px 20px;
+            border: 0.5px solid var(--border-color);
+            margin-bottom: 16px;
+            display: none;
+        }
+        .admin-panel.visible {
+            display: block;
+        }
+        .admin-panel .admin-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .admin-panel .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .admin-panel .admin-btn {
+            padding: 10px;
+            border-radius: 14px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            text-align: center;
+        }
+        .admin-panel .admin-btn:active {
+            transform: scale(0.95);
+            background: var(--bg-card);
+        }
+        .admin-panel .admin-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            fill: none;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        .dispute-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            border: 0.5px solid var(--border-color);
+            border-left: 3px solid var(--danger);
+        }
+        .dispute-item .dispute-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dispute-item .dispute-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .dispute-item .dispute-amount {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .dispute-item .dispute-reason {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .dispute-item .dispute-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .dispute-item .dispute-actions button {
+            flex: 1;
+            padding: 8px;
+            border-radius: 30px;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .dispute-item .dispute-actions button:active {
+            transform: scale(0.95);
+        }
+        .dispute-item .dispute-actions .resolve-btn {
+            background: var(--success);
+            color: #fff;
+        }
+        .dispute-item .dispute-actions .cancel-btn {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .calculator-grid .calc-result {
+            grid-column: span 2;
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+        .calculator-grid .calc-result .result-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .calculator-grid .calc-result .result-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* ===== DEPOSIT MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--modal-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 28px;
+            padding: 28px 24px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 0.5px solid var(--border-color);
+            box-shadow: var(--shadow);
+            animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px) scale(0.96);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .modal-sub {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: all 0.2s;
+        }
+        .modal-close:active {
+            transform: scale(0.9);
+        }
+        .modal .form-group {
+            margin-bottom: 16px;
+        }
+        .modal .form-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .modal .form-input,
+        .modal .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .modal .form-input:focus,
+        .modal .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-dim);
+        }
+        .modal .btn-primary {
+            margin-top: 8px;
+        }
+        .modal .deposit-info {
+            background: var(--bg-elevated);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        .modal .deposit-info strong {
+            color: var(--text-primary);
+        }
+        .modal .deposit-status {
+            text-align: center;
+            padding: 12px;
+            border-radius: 14px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+        .modal .deposit-status.pending {
+            background: rgba(255, 149, 0, 0.1);
+            color: var(--warning);
+        }
+        .modal .deposit-status.paid {
+            background: rgba(52, 199, 89, 0.1);
+            color: var(--success);
+        }
+        .modal .deposit-status.error {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--danger);
+        }
+
+        @media (max-width: 380px) {
+            .balance-value {
+                font-size: 32px;
+            }
+            .profile-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .menu-item {
+                padding: 14px 6px;
+            }
+            .menu-item .label {
+                font-size: 11px;
+            }
+            .menu-grid {
+                gap: 8px;
+            }
+            .themes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .admin-panel .admin-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .modal-content {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="toast" id="toast"></div>
+
+        <!-- DEPOSIT MODAL -->
+        <div class="modal-overlay" id="depositModal">
+            <div class="modal-content" style="position:relative;">
+                <button class="modal-close" onclick="closeDepositModal()">✕</button>
+                <div class="modal-title">Deposit</div>
+                <div class="modal-sub">Add funds to your balance</div>
+
+                <div class="form-group">
+                    <label class="form-label">Currency</label>
+                    <select class="form-select" id="depositCurrency">
+                        <option value="USDT">USDT (TRC20)</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="BUSD">BUSD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Amount (minimum $1)</label>
+                    <input class="form-input" id="depositAmount" type="number" placeholder="10.00" min="1" step="0.5" value="10">
+                </div>
+
+                <button class="btn-primary" id="depositSubmitBtn">
+                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    Create Invoice
+                </button>
+
+                <div class="deposit-info">
+                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;display:inline;vertical-align:middle;margin-right:6px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    <span>You will be redirected to Crypto Pay for secure payment</span>
+                </div>
+
+                <div id="depositStatus" style="display:none;"></div>
+            </div>
+        </div>
+
+        <header class="header">
+            <button class="header-back" id="backBtn">
+                <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:currentColor;stroke-width:2.5;fill:none;"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="header-title" id="pageTitle">Dashboard</span>
+            <div class="header-actions">
+                <button class="header-btn" id="langBtn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- PAGE: DASHBOARD -->
+        <div class="page active" id="page-dashboard">
+            <div class="balance-card">
+                <div class="balance-label">Total Balance</div>
+                <div class="currency-selector" id="currencySelector">
+                    <button class="active" data-currency="USDT">USDT</button>
+                    <button data-currency="BTC">BTC</button>
+                    <button data-currency="ETH">ETH</button>
+                    <button data-currency="RUB">RUB</button>
+                    <button data-currency="EUR">EUR</button>
+                </div>
+                <div class="balance-value">
+                    <span id="balanceDisplay">0.00</span>
+                    <span class="currency" id="currencySymbol">$</span>
+                </div>
+                <div class="balance-change positive" id="balanceChange">+0.00 today</div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item" data-nav="requisites">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <span class="label">Wallets</span>
+                </div>
+                <div class="menu-item" data-nav="create">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <span class="label">Create Deal</span>
+                    <span class="badge">OTC</span>
+                </div>
+                <div class="menu-item" data-nav="transactions">
+                    <div class="icon-wrap">
+                        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9" stroke="currentColor" stroke-width="1.8"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke="currentColor" stroke-width="1.8"/><polyline points="7 23 3 19 7 15" stroke="currentColor" stroke-width="1.8"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.8"/></svg>
+                    </div>
+                    <span class="label">History</span>
+                </div>
+            </div>
+
+            <div class="referral-panel">
+                <div class="referral-stats">
+                    <div class="referral-stat">Referrals <strong id="refCount">0</strong></div>
+                    <div class="referral-stat">Earned <strong id="refEarned">0.0</strong> USDT</div>
+                </div>
+                <div class="referral-link-block">
+                    <span class="link-text" id="refLinkDisplay">t.me/...</span>
+                    <button class="copy-action" id="copyRefBtn">
+                        <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/></svg>
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <div class="referral-hint">25% commission from each referral deal</div>
+            </div>
+
+            <div style="background:var(--bg-card);border-radius:20px;padding:16px 20px;border:0.5px solid var(--border-color);">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                    <span style="font-weight:600;font-size:15px;">Recent Deals</span>
+                    <span style="font-size:12px;color:var(--text-tertiary);" id="recentDealsCount">0</span>
+                </div>
+                <div id="recentDealsList">
+                    <div class="empty-state" style="padding:20px 0;">
+                        <div class="sub">No deals yet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: PROFILE -->
+        <div class="page" id="page-profile">
+            <div class="profile-avatar" id="avatarLetter">S</div>
+            <div class="profile-name" id="profileName">Trader</div>
+            <div class="profile-id" id="profileId">ID: loading...</div>
+            <div class="profile-rating" id="profileRating"></div>
+            <div class="profile-stats">
+                <div class="profile-stat"><span class="num" id="statDeals">0</span><span class="label">Deals</span></div>
+                <div class="profile-stat"><span class="num" id="statReferrals">0</span><span class="label">Referrals</span></div>
+                <div class="profile-stat"><span class="num" id="statEarned">0.0</span><span class="label">Earned</span></div>
+            </div>
+            <div class="balance-card" style="margin-bottom:16px;">
+                <div class="balance-label">Total Balance</div>
+                <div class="balance-value" style="font-size:28px;">
+                    <span id="profileBalance">0.00</span>
+                    <span class="currency">USDT</span>
+                </div>
+            </div>
+            <div style="margin-bottom:16px;">
+                <button class="btn-primary" id="depositBtn">
+                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    Deposit
+                </button>
+            </div>
+            <div style="margin-top:16px;">
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">Blacklist</h3>
+                <div id="blacklistContainer"></div>
+            </div>
+            <div id="adminPanelContainer"></div>
+        </div>
+
+        <!-- PAGE: CREATE DEAL -->
+        <div class="page" id="page-create">
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:22px;font-weight:600;">Create Deal</h2>
+                <p style="color:var(--text-tertiary);font-size:14px;">Fill in the details</p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Title</label>
+                <input class="form-input" id="dealTitleInput" placeholder="e.g. 500 USDT OTC Trade">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount</label>
+                <input class="form-input" id="dealAmountInput" type="number" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Currency</label>
+                <select class="form-select" id="dealCurrencyInput">
+                    <option value="USDT">USDT (TRC20)</option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="SOL">SOL</option>
+                    <option value="BNB">BNB</option>
+                    <option value="RUB">RUB</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Your Role</label>
+                <select class="form-select" id="dealRoleInput">
+                    <option value="seller">Seller (Receiving money)</option>
+                    <option value="buyer">Buyer (Sending money)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Description</label>
+                <textarea class="form-textarea" id="dealDescInput" placeholder="Additional details..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Private Deal (Optional)</label>
+                <input class="form-input" id="privateUserInput" placeholder="Telegram ID of participant...">
+            </div>
+            <button class="btn-primary" id="createDealBtn">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8"/></svg>
+                Create Deal
+            </button>
+        </div>
+
+        <!-- PAGE: DEALS -->
+        <div class="page" id="page-deals">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <h2 style="font-size:22px;font-weight:600;">My Deals</h2>
+                <span style="color:var(--text-tertiary);font-size:14px;" id="dealsTotal">0</span>
+            </div>
+            <div id="dealsList"></div>
+        </div>
+
+        <!-- PAGE: REQUISITES -->
+        <div class="page" id="page-requisites">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <h2 style="font-size:22px;font-weight:600;">My Wallets</h2>
+                <button class="btn-secondary" id="addRequisiteBtn" style="width:auto;padding:8px 16px;font-size:13px;">+ Add</button>
+            </div>
+            <div id="requisitesList"></div>
+            <div id="addRequisiteForm" style="display:none;margin-top:16px;background:var(--bg-card);border-radius:20px;padding:20px;border:0.5px solid var(--border-color);">
+                <div class="form-group">
+                    <label class="form-label">Currency</label>
+                    <select class="form-select" id="reqCurrencyInput">
+                        <option value="BTC">BTC</option>
+                        <option value="USDT">USDT (TRC20)</option>
+                        <option value="ETH">ETH</option>
+                        <option value="SOL">SOL</option>
+                        <option value="BNB">BNB</option>
+                        <option value="RUB">RUB</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Wallet Address</label>
+                    <input class="form-input" id="reqAddressInput" placeholder="0x... or T...">
+                </div>
+                <button class="btn-primary" id="saveRequisiteBtn">Save</button>
+                <button class="btn-secondary" id="cancelRequisiteBtn" style="margin-top:8px;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- PAGE: TRANSACTIONS -->
+        <div class="page" id="page-transactions">
+            <div style="margin-bottom:16px;">
+                <h2 style="font-size:22px;font-weight:600;">Transactions</h2>
+                <p style="color:var(--text-tertiary);font-size:14px;">Your activity history</p>
+            </div>
+            <div id="transactionsList"></div>
+        </div>
+
+        <!-- PAGE: THEMES -->
+        <div class="page" id="page-themes">
+            <div style="margin-bottom:16px;">
+                <h2 style="font-size:22px;font-weight:600;">Themes</h2>
+                <p style="color:var(--text-tertiary);font-size:14px;">Choose your style</p>
+            </div>
+            <div class="themes-grid" id="themesGrid"></div>
+        </div>
+
+        <!-- PAGE: CALCULATOR -->
+        <div class="page" id="page-calculator">
+            <div style="margin-bottom:20px;">
+                <h2 style="font-size:22px;font-weight:600;">Crypto Calculator</h2>
+                <p style="color:var(--text-tertiary);font-size:14px;">Convert between currencies</p>
+            </div>
+            <div class="form-group">
+                <label class="form-label">From</label>
+                <select class="form-select" id="calcFrom">
+                    <option value="USDT">USDT</option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="RUB">RUB</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">To</label>
+                <select class="form-select" id="calcTo">
+                    <option value="USDT">USDT</option>
+                    <option value="BTC">BTC</option>
+                    <option value="ETH">ETH</option>
+                    <option value="RUB">RUB</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount</label>
+                <input class="form-input" id="calcAmount" type="number" placeholder="1.00" value="1">
+            </div>
+            <button class="btn-primary" id="calcBtn">
+                <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                Convert
+            </button>
+            <div class="calculator-grid" id="calcResult" style="display:none;">
+                <div class="calc-result">
+                    <div class="result-label">Converted Amount</div>
+                    <div class="result-value" id="calcResultValue">0.00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: DEAL DETAIL -->
+        <div class="page" id="page-deal-detail">
+            <div id="dealDetailContent"></div>
+        </div>
+
+        <!-- TAB BAR -->
+        <nav class="tab-bar" id="tabBar">
+            <button class="tab-item active" data-tab="dashboard">
+                <span class="tab-icon-wrap">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.8"/></svg>
+                </span>
+                <span class="tab-label">Home</span>
+            </button>
+            <button class="tab-item" data-tab="create">
+                <span class="tab-icon-wrap">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.8"/></svg>
+                </span>
+                <span class="tab-label">Create</span>
+            </button>
+            <button class="tab-item" data-tab="deals">
+                <span class="tab-icon-wrap">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke="currentColor" stroke-width="1.8"/></svg>
+                    <span class="tab-badge" id="tabDealsBadge" style="display:none;">0</span>
+                </span>
+                <span class="tab-label">Deals</span>
+            </button>
+            <button class="tab-item" data-tab="calculator">
+                <span class="tab-icon-wrap">
+                    <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="14" x2="12" y2="14" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="18" x2="14" y2="18" stroke="currentColor" stroke-width="1.8"/></svg>
+                </span>
+                <span class="tab-label">Calc</span>
+            </button>
+            <button class="tab-item" data-tab="profile">
+                <span class="tab-icon-wrap">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 20v-2a6 6 0 0 1 6-6h1a6 6 0 0 1 6 6v2" stroke="currentColor" stroke-width="1.8"/></svg>
+                </span>
+                <span class="tab-label">Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <script>
+        // ============================================================
+        // STATE
+        // ============================================================
+        const state = {
+            user: null,
+            balance: 0,
+            deals: [],
+            requisites: [],
+            transactions: [],
+            blacklist: [],
+            ratings: [],
+            referrals: 0,
+            earned: 0,
+            lang: 'en',
+            theme: 'dark',
+            telegramId: '',
+            currentPage: 'dashboard',
+            todayChange: 0,
+            currentCurrency: 'USDT',
+            rates: { USDT: 1, BTC: 43000, ETH: 3000, RUB: 0.011, EUR: 1.08 },
+            currentDealId: null,
+            isAdmin: false,
+            disputes: [],
+            depositInvoiceId: null,
+            depositInterval: null
+        };
+
+        const themesList = [
+            { id: 'dark', name: 'Dark', colors: ['#000000', '#007aff', '#5856d6', '#ffffff'] },
+            { id: 'light', name: 'Light', colors: ['#f2f2f7', '#007aff', '#5856d6', '#000000'] },
+            { id: 'midnight', name: 'Midnight', colors: ['#0a0a1a', '#6c5ce7', '#a29bfe', '#e8e8ff'] },
+            { id: 'forest', name: 'Forest', colors: ['#0a1a0a', '#00d47e', '#00b894', '#e0ffe0'] },
+            { id: 'sunset', name: 'Sunset', colors: ['#1a0a0a', '#ff6b6b', '#ff9f43', '#ffe0e0'] },
+            { id: 'ocean', name: 'Ocean', colors: ['#0a0a1a', '#00b4ff', '#0077ff', '#e0f0ff'] },
+            { id: 'rose', name: 'Rose', colors: ['#1a0a12', '#ff2d78', '#ff6b9d', '#ffe0ec'] },
+            { id: 'space', name: 'Space', colors: ['#0a0a1a', '#7c4dff', '#b388ff', '#e8e0ff'] },
+            { id: 'gold', name: 'Gold', colors: ['#1a120a', '#ffb300', '#ffd740', '#fff0d0'] },
+            { id: 'mono', name: 'Mono', colors: ['#121212', '#666666', '#999999', '#e8e8e8'] }
+        ];
+
+        // ============================================================
+        // I18N
+        // ============================================================
+        const i18n = {
+            ru: {
+                balance: 'Общий баланс',
+                requisites: 'Кошельки',
+                createDeal: 'Создать сделку',
+                referrals: 'Рефералов',
+                earned: 'Заработано',
+                copy: 'Копировать',
+                refHint: '25% с комиссии каждой сделки реферала',
+                recentDeals: 'Последние сделки',
+                noDeals: 'Нет активных сделок',
+                deals: 'Сделок',
+                transactions: 'Транзакции',
+                txSub: 'История активности',
+                createTitle: 'Создание сделки',
+                createSub: 'Заполните детали ниже',
+                dealTitle: 'Название',
+                dealAmount: 'Сумма',
+                dealCurrency: 'Валюта',
+                dealDescription: 'Описание',
+                createBtn: 'Создать сделку',
+                dealPlaceholder: 'Напр. 500 USDT OTC',
+                amountPlaceholder: '0.00',
+                descPlaceholder: 'Дополнительные детали...',
+                privatePlaceholder: 'Telegram ID участника...',
+                myDeals: 'Мои сделки',
+                myRequisites: 'Мои кошельки',
+                addRequisite: '+ Добавить',
+                currency: 'Валюта',
+                address: 'Адрес кошелька',
+                save: 'Сохранить',
+                cancel: 'Отмена',
+                addressPlaceholder: '0x... или T...',
+                tabHome: 'Главная',
+                tabCreate: 'Создать',
+                tabDeals: 'Сделки',
+                tabThemes: 'Темы',
+                tabProfile: 'Профиль',
+                tabCalc: 'Калькулятор',
+                themes: 'Темы',
+                themesSub: 'Выберите свой стиль',
+                dealDetail: 'Детали сделки',
+                invitePartner: 'Пригласить партнёра',
+                acceptDeal: 'Принять сделку',
+                completeDeal: 'Завершить сделку',
+                cancelDeal: 'Отменить сделку',
+                escrowDeal: 'Эскроу (Гарант)',
+                releaseEscrow: 'Выпустить средства',
+                inviteSent: 'Приглашение отправлено!',
+                dealAccepted: 'Сделка принята!',
+                dealCompleted: 'Сделка завершена!',
+                dealCancelled: 'Сделка отменена',
+                dealEscrowed: 'Средства заморожены',
+                fundsReleased: 'Средства выпущены',
+                statusPending: 'Ожидание',
+                statusActive: 'Активна',
+                statusCompleted: 'Завершена',
+                statusCancelled: 'Отменена',
+                statusEscrow: 'Эскроу',
+                statusDispute: 'Спор',
+                statusDeclined: 'Отклонена',
+                deleteRequisite: 'Удалить',
+                blockUser: 'Заблокировать',
+                unblockUser: 'Разблокировать',
+                blacklist: 'Чёрный список',
+                noBlacklist: 'Нет заблокированных пользователей',
+                chatPlaceholder: 'Введите сообщение...',
+                deposit: 'Пополнить',
+                calcTitle: 'Крипто-калькулятор',
+                calcSub: 'Конвертация между валютами',
+                calcFrom: 'Из',
+                calcTo: 'В',
+                calcAmount: 'Сумма',
+                calcConvert: 'Конвертировать',
+                calcResult: 'Результат',
+                roleSeller: 'Продавец (получает деньги)',
+                roleBuyer: 'Покупатель (отправляет деньги)',
+                disputeDeal: 'Оспорить сделку',
+                disputeReason: 'Причина спора',
+                adminPanel: 'Админ-панель',
+                adminDisputes: 'Спорные сделки',
+                adminResolve: 'Завершить',
+                adminCancel: 'Отменить',
+                adminNoDisputes: 'Нет спорных сделок',
+                adminAllDeals: 'Все сделки',
+                depositTitle: 'Пополнение баланса',
+                depositSub: 'Выберите способ пополнения',
+                depositCrypto: 'Криптовалюта',
+                depositAmount: 'Сумма пополнения',
+                depositBtn: 'Создать счёт',
+                depositWaiting: 'Ожидание оплаты...',
+                depositSuccess: 'Счёт оплачен!',
+                depositError: 'Ошибка создания счёта',
+                depositMin: 'Минимальная сумма пополнения $1',
+                rateBuyer: 'Покупатель',
+                rateSeller: 'Продавец',
+                rateComment: 'Комментарий',
+                rateSubmit: 'Оценить',
+                rateTitle: 'Оцените сделку'
+            },
+            en: {
+                balance: 'Total Balance',
+                requisites: 'Wallets',
+                createDeal: 'Create Deal',
+                referrals: 'Referrals',
+                earned: 'Earned',
+                copy: 'Copy',
+                refHint: '25% commission from each referral deal',
+                recentDeals: 'Recent Deals',
+                noDeals: 'No active deals',
+                deals: 'Deals',
+                transactions: 'Transactions',
+                txSub: 'Your activity history',
+                createTitle: 'Create Deal',
+                createSub: 'Fill in the details below',
+                dealTitle: 'Title',
+                dealAmount: 'Amount',
+                dealCurrency: 'Currency',
+                dealDescription: 'Description',
+                createBtn: 'Create Deal',
+                dealPlaceholder: 'e.g. 500 USDT OTC',
+                amountPlaceholder: '0.00',
+                descPlaceholder: 'Additional details...',
+                privatePlaceholder: 'Telegram ID of participant...',
+                myDeals: 'My Deals',
+                myRequisites: 'My Wallets',
+                addRequisite: '+ Add',
+                currency: 'Currency',
+                address: 'Wallet Address',
+                save: 'Save',
+                cancel: 'Cancel',
+                addressPlaceholder: '0x... or T...',
+                tabHome: 'Home',
+                tabCreate: 'Create',
+                tabDeals: 'Deals',
+                tabThemes: 'Themes',
+                tabProfile: 'Profile',
+                tabCalc: 'Calculator',
+                themes: 'Themes',
+                themesSub: 'Choose your style',
+                dealDetail: 'Deal Details',
+                invitePartner: 'Invite Partner',
+                acceptDeal: 'Accept Deal',
+                completeDeal: 'Complete Deal',
+                cancelDeal: 'Cancel Deal',
+                escrowDeal: 'Escrow (Guarantee)',
+                releaseEscrow: 'Release Funds',
+                inviteSent: 'Invite sent!',
+                dealAccepted: 'Deal accepted!',
+                dealCompleted: 'Deal completed!',
+                dealCancelled: 'Deal cancelled',
+                dealEscrowed: 'Funds frozen',
+                fundsReleased: 'Funds released',
+                statusPending: 'Pending',
+                statusActive: 'Active',
+                statusCompleted: 'Completed',
+                statusCancelled: 'Cancelled',
+                statusEscrow: 'Escrow',
+                statusDispute: 'Dispute',
+                statusDeclined: 'Declined',
+                deleteRequisite: 'Delete',
+                blockUser: 'Block',
+                unblockUser: 'Unblock',
+                blacklist: 'Blacklist',
+                noBlacklist: 'No blocked users',
+                chatPlaceholder: 'Type a message...',
+                deposit: 'Deposit',
+                calcTitle: 'Crypto Calculator',
+                calcSub: 'Convert between currencies',
+                calcFrom: 'From',
+                calcTo: 'To',
+                calcAmount: 'Amount',
+                calcConvert: 'Convert',
+                calcResult: 'Result',
+                roleSeller: 'Seller (Receiving money)',
+                roleBuyer: 'Buyer (Sending money)',
+                disputeDeal: 'Dispute Deal',
+                disputeReason: 'Reason for dispute',
+                adminPanel: 'Admin Panel',
+                adminDisputes: 'Disputed Deals',
+                adminResolve: 'Resolve',
+                adminCancel: 'Cancel',
+                adminNoDisputes: 'No disputed deals',
+                adminAllDeals: 'All Deals',
+                depositTitle: 'Deposit',
+                depositSub: 'Choose deposit method',
+                depositCrypto: 'Cryptocurrency',
+                depositAmount: 'Deposit amount',
+                depositBtn: 'Create Invoice',
+                depositWaiting: 'Waiting for payment...',
+                depositSuccess: 'Invoice paid!',
+                depositError: 'Error creating invoice',
+                depositMin: 'Minimum deposit is $1',
+                rateBuyer: 'Buyer',
+                rateSeller: 'Seller',
+                rateComment: 'Comment',
+                rateSubmit: 'Submit Rating',
+                rateTitle: 'Rate this deal'
+            }
+        };
+
+        function t(key) {
+            return i18n[state.lang]?.[key] || i18n.en[key] || key;
+        }
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => document.querySelectorAll(s);
+
+        const balanceDisplay = $('#balanceDisplay');
+        const balanceChange = $('#balanceChange');
+        const currencySymbol = $('#currencySymbol');
+        const profileBalance = $('#profileBalance');
+        const refCount = $('#refCount');
+        const refEarned = $('#refEarned');
+        const refLinkDisplay = $('#refLinkDisplay');
+        const recentDealsList = $('#recentDealsList');
+        const recentDealsCount = $('#recentDealsCount');
+        const dealsList = $('#dealsList');
+        const dealsTotal = $('#dealsTotal');
+        const requisitesList = $('#requisitesList');
+        const transactionsList = $('#transactionsList');
+        const tabDealsBadge = $('#tabDealsBadge');
+        const toast = $('#toast');
+        const pageTitle = $('#pageTitle');
+        const backBtn = $('#backBtn');
+        const themesGrid = $('#themesGrid');
+        const blacklistContainer = $('#blacklistContainer');
+        const adminPanelContainer = $('#adminPanelContainer');
+
+        const avatarLetter = $('#avatarLetter');
+        const profileName = $('#profileName');
+        const profileId = $('#profileId');
+        const profileRating = $('#profileRating');
+        const statDeals = $('#statDeals');
+        const statReferrals = $('#statReferrals');
+        const statEarned = $('#statEarned');
+
+        // ============================================================
+        // API
+        // ============================================================
+        async function api(path, options = {}) {
+            const res = await fetch(path, {
+                ...options,
+                headers: { 'Content-Type': 'application/json', ...options.headers }
+            });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'API error');
+            }
+            return res.json();
+        }
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        function navigate(page, data = null) {
+            $$('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) {
+                target.classList.add('active');
+                target.style.animation = 'none';
+                requestAnimationFrame(() => {
+                    target.style.animation = 'fadeSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                });
+            }
+
+            $$('.tab-item').forEach(t => t.classList.remove('active'));
+            const tab = document.querySelector(`.tab-item[data-tab="${page}"]`);
+            if (tab) tab.classList.add('active');
+
+            const detailPages = ['deal-detail'];
+            if (detailPages.includes(page)) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+
+            const titles = {
+                dashboard: t('tabHome'),
+                profile: t('tabProfile'),
+                create: t('tabCreate'),
+                deals: t('tabDeals'),
+                requisites: t('tabRequisites'),
+                transactions: t('transactions'),
+                themes: t('tabThemes'),
+                calculator: t('tabCalc'),
+                'deal-detail': t('dealDetail')
+            };
+            pageTitle.textContent = titles[page] || page;
+
+            state.currentPage = page;
+
+            if (page === 'deals') loadDeals();
+            if (page === 'requisites') loadRequisites();
+            if (page === 'transactions') loadTransactions();
+            if (page === 'themes') renderThemes();
+            if (page === 'profile') { loadBlacklist();
+                loadRatings(); }
+            if (page === 'deal-detail' && data) renderDealDetail(data);
+        }
+
+        // ============================================================
+        // THEMES
+        // ============================================================
+        function setTheme(theme) {
+            state.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('swill_theme', theme);
+            renderThemes();
+        }
+
+        function renderThemes() {
+            if (!themesGrid) return;
+            themesGrid.innerHTML = themesList.map(theme => `
+                    <div class="theme-card ${state.theme === theme.id ? 'active' : ''}" onclick="setTheme('${theme.id}')">
+                        <div class="preview" style="background:${theme.colors[0]};border:1px solid rgba(255,255,255,0.1);">
+                            ${theme.colors.slice(1).map(c => `<span class="dot" style="background:${c};"></span>`).join('')}
+                        </div>
+                        <div class="theme-name">${theme.name}</div>
+                    </div>
+                `).join('');
+        }
+
+        // ============================================================
+        // LANGUAGE
+        // ============================================================
+        function setLang(lang) {
+            state.lang = lang;
+            localStorage.setItem('swill_lang', lang);
+            updateUI();
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // COPY
+        // ============================================================
+        function copyText(text, msg) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(msg || t('copy'));
+                }).catch(() => fallbackCopy(text, msg));
+            } else {
+                fallbackCopy(text, msg);
+            }
+        }
+
+        function fallbackCopy(text, msg) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast(msg || t('copy'));
+        }
+
+        // ============================================================
+        // CURRENCY
+        // ============================================================
+        function loadRates() {
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether&vs_currencies=usd,rub,eur')
+                .then(r => r.json())
+                .then(data => {
+                    state.rates = {
+                        USDT: 1,
+                        BTC: data.bitcoin?.usd || 43000,
+                        ETH: data.ethereum?.usd || 3000,
+                        RUB: 1 / (data.tether?.rub || 90),
+                        EUR: data.tether?.eur || 0.92
+                    };
+                    updateBalanceDisplay();
+                })
+                .catch(() => {});
+        }
+
+        function changeCurrency(currency) {
+            state.currentCurrency = currency;
+            document.querySelectorAll('.currency-selector button').forEach(b => {
+                b.classList.toggle('active', b.dataset.currency === currency);
+            });
+            updateBalanceDisplay();
+        }
+
+        function updateBalanceDisplay() {
+            const rate = state.rates[state.currentCurrency] || 1;
+            const symbols = { USDT: '$', BTC: '₿', ETH: '⟠', RUB: '₽', EUR: '€' };
+            const value = state.balance * rate;
+            balanceDisplay.textContent = value.toFixed(2);
+            currencySymbol.textContent = symbols[state.currentCurrency] || '$';
+        }
+
+        // ============================================================
+        // LOAD USER
+        // ============================================================
+        async function loadUser() {
+            try {
+                let userId = 'user_12345';
+                let firstName = 'Trader';
+                let username = '';
+
+                if (window.Telegram && Telegram.WebApp) {
+                    const user = Telegram.WebApp.initDataUnsafe?.user;
+                    if (user) {
+                        userId = user.id.toString();
+                        username = user.username || '';
+                        firstName = user.first_name || 'Trader';
+                    }
+                }
+
+                state.telegramId = userId;
+
+                const userData = await api(`/api/user/${userId}`);
+                state.user = userData;
+                state.balance = userData.balance || 0;
+                state.referrals = userData.referrals || 0;
+                state.earned = userData.earned || 0;
+                state.isAdmin = userData.isAdmin || false;
+
+                state.todayChange = (Math.random() * 10 - 2);
+                balanceChange.textContent = `${state.todayChange >= 0 ? '+' : ''}${state.todayChange.toFixed(2)} today`;
+                balanceChange.className = `balance-change ${state.todayChange >= 0 ? 'positive' : 'negative'}`;
+
+                profileName.textContent = firstName || username || 'Trader';
+                profileId.textContent = 'ID: ' + userId.slice(0, 8) + '...';
+                avatarLetter.textContent = (firstName || 'T').charAt(0).toUpperCase();
+
+                const botUsername = 'swill_otc_bot';
+                const refLink = `https://t.me/${botUsername}?start=${userData.ref_code}`;
+                refLinkDisplay.textContent = refLink;
+
+                updateBalanceDisplay();
+                updateUI();
+
+                if (state.isAdmin) {
+                    renderAdminPanel();
+                    loadDisputes();
+                }
+
+            } catch (err) {
+                console.error('Load user error:', err);
+            }
+        }
+
+        // ============================================================
+        // RATINGS
+        // ============================================================
+        async function loadRatings() {
+            try {
+                const ratings = await api(`/api/ratings/${state.telegramId}`);
+                state.ratings = ratings;
+                renderRatings();
+            } catch (err) {
+                console.error('Load ratings error:', err);
+            }
+        }
+
+        function renderRatings() {
+            if (!profileRating) return;
+            const avgRating = state.user?.rating || 0;
+            const stars = '★'.repeat(Math.round(avgRating)) + '☆'.repeat(5 - Math.round(avgRating));
+            profileRating.innerHTML =
+                `<span class="star">${stars}</span> <span style="color:var(--text-secondary);font-size:14px;margin-left:8px;">${avgRating.toFixed(1)}</span>`;
+        }
+
+        async function submitRating(dealId, toUser, rating, comment) {
+            try {
+                await api('/api/ratings', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        dealId,
+                        fromUser: state.telegramId,
+                        toUser,
+                        rating,
+                        comment
+                    })
+                });
+                showToast('Rating submitted!');
+                loadRatings();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // LOAD DEALS
+        // ============================================================
+        async function loadDeals() {
+            try {
+                const deals = await api(`/api/deals/${state.telegramId}`);
+                state.deals = deals;
+                renderDeals();
+            } catch (err) {
+                console.error('Load deals error:', err);
+            }
+        }
+
+        function renderDeals() {
+            if (!state.deals || state.deals.length === 0) {
+                dealsList.innerHTML = `<div class="empty-state"><div class="sub">${t('noDeals')}</div></div>`;
+                dealsTotal.textContent = '0';
+                return;
+            }
+
+            dealsList.innerHTML = state.deals.map(deal => `
+                    <div class="deal-item" onclick="viewDeal('${deal.id}')">
+                        <div class="deal-header">
+                            <div class="deal-title">${deal.title} ${deal.is_private ? '🔒' : ''}</div>
+                            <div class="deal-amount">${deal.amount} ${deal.currency}</div>
+                        </div>
+                        <div class="deal-meta">
+                            <span>${new Date(deal.created_at).toLocaleDateString()}</span>
+                            <span class="deal-status ${deal.status}">${t('status' + deal.status.charAt(0).toUpperCase() + deal.status.slice(1)) || deal.status}</span>
+                            <span class="deal-role">${deal.role === 'seller' ? t('roleSeller') : t('roleBuyer')}</span>
+                        </div>
+                    </div>
+                `).join('');
+
+            dealsTotal.textContent = state.deals.length;
+            const pending = state.deals.filter(d => d.status === 'pending').length;
+            tabDealsBadge.textContent = pending;
+            tabDealsBadge.style.display = pending > 0 ? 'block' : 'none';
+            recentDealsCount.textContent = state.deals.length;
+
+            if (state.deals.length > 0) {
+                const recent = state.deals.slice(0, 3);
+                recentDealsList.innerHTML = recent.map(deal => `
+                        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--border-color);">
+                            <span style="font-size:13px;">${deal.title}</span>
+                            <span style="font-size:13px;font-weight:500;color:var(--accent);">${deal.amount} ${deal.currency}</span>
+                        </div>
+                    `).join('');
+            } else {
+                recentDealsList.innerHTML =
+                    `<div class="empty-state" style="padding:20px 0;"><div class="sub">${t('noDeals')}</div></div>`;
+            }
+        }
+
+        // ============================================================
+        // VIEW DEAL DETAIL
+        // ============================================================
+        function viewDeal(dealId) {
+            const deal = state.deals.find(d => d.id == dealId);
+            if (deal) {
+                state.currentDealId = dealId;
+                navigate('deal-detail', deal);
+            }
+        }
+
+        function renderDealDetail(deal) {
+            const container = $('#dealDetailContent');
+            const statusMap = {
+                pending: t('statusPending'),
+                active: t('statusActive'),
+                completed: t('statusCompleted'),
+                cancelled: t('statusCancelled'),
+                escrow: t('statusEscrow'),
+                dispute: t('statusDispute'),
+                declined: t('statusDeclined')
+            };
+
+            const roleText = deal.role === 'seller' ? t('roleSeller') : t('roleBuyer');
+            const isParticipant = deal.participant_id === state.telegramId;
+            const isCreator = deal.creator_id === state.telegramId;
+            const canAct = deal.status === 'pending' || deal.status === 'active' || deal.status === 'escrow';
+
+            container.innerHTML = `
+                    <div style="margin-bottom:20px;">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                            <div>
+                                <h2 style="font-size:22px;font-weight:600;">${deal.title} ${deal.is_private ? '🔒' : ''}</h2>
+                                <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
+                                    <span style="color:var(--text-secondary);font-size:16px;font-weight:500;">${deal.amount} ${deal.currency}</span>
+                                    <span style="font-size:11px;padding:3px 14px;border-radius:40px;background:var(--bg-elevated);color:var(--text-secondary);">${roleText}</span>
+                                </div>
+                            </div>
+                            <span class="deal-status ${deal.status}" style="font-size:12px;padding:4px 16px;">${statusMap[deal.status] || deal.status}</span>
+                        </div>
+                        ${deal.description ? `<p style="color:var(--text-secondary);margin-top:12px;padding:12px 16px;background:var(--bg-elevated);border-radius:12px;">${deal.description}</p>` : ''}
+                        ${deal.dispute_reason ? `<div style="margin-top:12px;padding:12px 16px;background:rgba(255,59,48,0.1);border-radius:12px;border-left:3px solid var(--danger);"><strong style="color:var(--danger);">Dispute:</strong> ${deal.dispute_reason}</div>` : ''}
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;padding:12px 16px;background:var(--bg-elevated);border-radius:14px;">
+                            <div><span style="color:var(--text-tertiary);font-size:11px;">Created</span><br><span style="font-size:13px;">${new Date(deal.created_at).toLocaleDateString()}</span></div>
+                            ${deal.completed_at ? `<div><span style="color:var(--text-tertiary);font-size:11px;">Completed</span><br><span style="font-size:13px;">${new Date(deal.completed_at).toLocaleDateString()}</span></div>` : ''}
+                            <div><span style="color:var(--text-tertiary);font-size:11px;">Creator</span><br><span style="font-size:13px;">${deal.creator_id.slice(0,8)}...</span></div>
+                            ${deal.participant_id ? `<div><span style="color:var(--text-tertiary);font-size:11px;">Participant</span><br><span style="font-size:13px;">${deal.participant_id.slice(0,8)}...</span></div>` : ''}
+                        </div>
+                        ${deal.status === 'escrow' ? `<div style="margin-top:12px;padding:12px;background:var(--accent-dim);border-radius:12px;text-align:center;color:var(--accent);font-weight:500;">🔒 ${deal.escrow_amount || deal.amount} ${deal.currency} frozen in escrow</div>` : ''}
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        ${deal.status === 'pending' && isCreator ? `
+                            <button class="btn-primary" onclick="inviteToDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                ${t('invitePartner')}
+                            </button>
+                            <button class="btn-danger" onclick="cancelDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                ${t('cancelDeal')}
+                            </button>
+                        ` : ''}
+                        ${deal.status === 'pending' && !isCreator && !isParticipant ? `
+                            <button class="btn-primary" onclick="acceptDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                ${t('acceptDeal')}
+                            </button>
+                            <button class="btn-danger" onclick="declineDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Decline
+                            </button>
+                        ` : ''}
+                        ${deal.status === 'active' ? `
+                            ${isCreator ? `
+                                <button class="btn-primary" onclick="completeDeal('${deal.id}')">
+                                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                    ${t('completeDeal')}
+                                </button>
+                            ` : ''}
+                            <button class="btn-secondary" onclick="escrowDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                ${t('escrowDeal')}
+                            </button>
+                            ${isCreator ? `
+                                <button class="btn-danger" onclick="cancelDeal('${deal.id}')">
+                                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    ${t('cancelDeal')}
+                                </button>
+                            ` : ''}
+                            <button class="btn-danger" onclick="disputeDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                ${t('disputeDeal')}
+                            </button>
+                        ` : ''}
+                        ${deal.status === 'escrow' ? `
+                            <button class="btn-success" onclick="releaseEscrow('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                ${t('releaseEscrow')}
+                            </button>
+                            <button class="btn-danger" onclick="disputeDeal('${deal.id}')">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                ${t('disputeDeal')}
+                            </button>
+                        ` : ''}
+                        ${deal.status === 'completed' ? `
+                            <div style="text-align:center;color:var(--text-secondary);padding:20px;background:var(--bg-elevated);border-radius:16px;">
+                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--success);stroke-width:2;fill:none;display:block;margin:0 auto 8px;"><polyline points="20 6 9 17 4 12"/></svg>
+                                ${t('dealCompleted')}
+                            </div>
+                            ${isCreator || isParticipant ? `
+                                <button class="btn-secondary" onclick="showRatingModal('${deal.id}','${isCreator ? deal.participant_id : deal.creator_id}')">
+                                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                    Rate this deal
+                                </button>
+                            ` : ''}
+                        ` : ''}
+                        ${deal.status === 'cancelled' ? `
+                            <div style="text-align:center;color:var(--text-tertiary);padding:20px;background:var(--bg-elevated);border-radius:16px;">
+                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--danger);stroke-width:2;fill:none;display:block;margin:0 auto 8px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                ${t('dealCancelled')}
+                            </div>
+                        ` : ''}
+                        ${deal.status === 'declined' ? `
+                            <div style="text-align:center;color:var(--text-tertiary);padding:20px;background:var(--bg-elevated);border-radius:16px;">
+                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--warning);stroke-width:2;fill:none;display:block;margin:0 auto 8px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                ${t('statusDeclined')}
+                            </div>
+                        ` : ''}
+                        ${deal.status === 'dispute' ? `
+                            <div style="text-align:center;color:var(--danger);padding:20px;background:rgba(255,59,48,0.1);border-radius:16px;border:0.5px solid rgba(255,59,48,0.2);">
+                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--danger);stroke-width:2;fill:none;display:block;margin:0 auto 8px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                ${t('statusDispute')} — Awaiting admin review
+                            </div>
+                        ` : ''}
+                        ${canAct ? `
+                            <div style="margin-top:12px;">
+                                <button class="btn-secondary" onclick="openChat('${deal.id}')" style="background:var(--bg-card);">
+                                    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    Open Chat
+                                </button>
+                            </div>
+                            <div class="chat-container" id="chatContainer" style="display:none;">
+                                <div class="chat-messages" id="chatMessages"></div>
+                                <div class="chat-input">
+                                    <input type="text" id="chatInput" placeholder="${t('chatPlaceholder')}">
+                                    <button onclick="sendMessage()">
+                                        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        ` : ''}
+                        ${!isCreator && deal.status !== 'cancelled' && deal.status !== 'completed' && deal.status !== 'declined' ? `
+                            <button class="btn-danger" onclick="blockUser('${deal.creator_id}')" style="margin-top:8px;">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                                ${t('blockUser')}
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            state.currentDealId = deal.id;
+        }
+
+        // ============================================================
+        // CHAT
+        // ============================================================
+        let currentChatDeal = null;
+
+        function openChat(dealId) {
+            currentChatDeal = dealId;
+            const container = document.getElementById('chatContainer');
+            if (container) {
+                container.style.display = 'flex';
+                loadChatMessages(dealId);
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        async function loadChatMessages(dealId) {
+            try {
+                const messages = await api(`/api/chat/${dealId}`);
+                const chat = document.getElementById('chatMessages');
+                if (!chat) return;
+                chat.innerHTML = messages.map(msg => `
+                        <div class="chat-message ${msg.user_id === state.telegramId ? 'my' : 'other'}">
+                            <div class="msg-text">${msg.message}</div>
+                            <div class="msg-time">${new Date(msg.created_at).toLocaleTimeString()}</div>
+                        </div>
+                    `).join('');
+                chat.scrollTop = chat.scrollHeight;
+            } catch (err) {
+                console.error('Load chat error:', err);
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            if (!input) return;
+            const message = input.value.trim();
+            if (!message || !currentChatDeal) return;
+
+            try {
+                await api('/api/chat', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        dealId: currentChatDeal,
+                        userId: state.telegramId,
+                        message: message
+                    })
+                });
+                input.value = '';
+                loadChatMessages(currentChatDeal);
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // DEAL ACTIONS
+        // ============================================================
+        async function inviteToDeal(dealId) {
+            try {
+                const result = await api(`/api/deals/${dealId}/invite`, {
+                    method: 'POST',
+                    body: JSON.stringify({ userId: state.telegramId })
+                });
+                copyText(result.link, t('inviteSent'));
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function acceptDeal(dealId) {
+            try {
+                await api(`/api/deals/${dealId}/accept`, {
+                    method: 'POST',
+                    body: JSON.stringify({ participantId: state.telegramId })
+                });
+                showToast(t('dealAccepted'));
+                await loadDeals();
+                await loadUser();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function declineDeal(dealId) {
+            if (!confirm('Decline this deal?')) return;
+            try {
+                await api(`/api/deals/${dealId}/decline`, { method: 'POST' });
+                showToast('Deal declined');
+                await loadDeals();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function completeDeal(dealId) {
+            try {
+                await api(`/api/deals/${dealId}/complete`, { method: 'POST' });
+                showToast(t('dealCompleted'));
+                await loadDeals();
+                await loadUser();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function cancelDeal(dealId) {
+            if (!confirm(t('cancelDeal') + '?')) return;
+            try {
+                await api(`/api/deals/${dealId}/cancel`, { method: 'POST' });
+                showToast(t('dealCancelled'));
+                await loadDeals();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function escrowDeal(dealId) {
+            try {
+                await api(`/api/deals/${dealId}/escrow`, {
+                    method: 'POST',
+                    body: JSON.stringify({ userId: state.telegramId })
+                });
+                showToast(t('dealEscrowed'));
+                await loadDeals();
+                await loadUser();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function releaseEscrow(dealId) {
+            try {
+                await api(`/api/deals/${dealId}/release`, {
+                    method: 'POST',
+                    body: JSON.stringify({ adminId: state.telegramId })
+                });
+                showToast(t('fundsReleased'));
+                await loadDeals();
+                await loadUser();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function disputeDeal(dealId) {
+            const reason = prompt(t('disputeReason') + ':');
+            if (!reason) return;
+            try {
+                await api(`/api/deals/${dealId}/dispute`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        userId: state.telegramId,
+                        reason: reason
+                    })
+                });
+                showToast('Dispute filed!');
+                await loadDeals();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // ADMIN
+        // ============================================================
+        function renderAdminPanel() {
+            if (!adminPanelContainer) return;
+            adminPanelContainer.innerHTML = `
+                    <div class="admin-panel visible">
+                        <div class="admin-title">
+                            <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                            ${t('adminPanel')}
+                        </div>
+                        <div class="admin-grid">
+                            <button class="admin-btn" onclick="loadDisputes()">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                ${t('adminDisputes')}
+                            </button>
+                            <button class="admin-btn" onclick="loadAllDeals()">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                ${t('adminAllDeals')}
+                            </button>
+                        </div>
+                        <div id="adminDisputesList" style="margin-top:12px;"></div>
+                    </div>
+                `;
+        }
+
+        async function loadDisputes() {
+            try {
+                const disputes = await api(`/api/deals/disputes/${state.telegramId}`);
+                state.disputes = disputes;
+                const container = document.getElementById('adminDisputesList');
+                if (!container) return;
+
+                if (disputes.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><div class="sub">${t('adminNoDisputes')}</div></div>`;
+                    return;
+                }
+
+                container.innerHTML = disputes.map(deal => `
+                        <div class="dispute-item">
+                            <div class="dispute-header">
+                                <span class="dispute-title">${deal.title}</span>
+                                <span class="dispute-amount">${deal.amount} ${deal.currency}</span>
+                            </div>
+                            <div class="dispute-reason">${deal.dispute_reason || 'No reason provided'}</div>
+                            <div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">
+                                Creator: ${deal.creator_id.slice(0,8)}... | Participant: ${deal.participant_id ? deal.participant_id.slice(0,8) + '...' : 'None'}
+                            </div>
+                            <div class="dispute-actions">
+                                <button class="resolve-btn" onclick="adminResolveDeal('${deal.id}')">${t('adminResolve')}</button>
+                                <button class="cancel-btn" onclick="adminCancelDeal('${deal.id}')">${t('adminCancel')}</button>
+                                <button class="btn-secondary" onclick="openChat('${deal.id}')" style="flex:1;padding:8px;font-size:12px;">💬 Chat</button>
+                            </div>
+                        </div>
+                    `).join('');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function loadAllDeals() {
+            try {
+                const deals = await api(`/api/deals/admin/all?adminId=${state.telegramId}`);
+                const container = document.getElementById('adminDisputesList');
+                if (!container) return;
+
+                if (deals.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><div class="sub">No deals</div></div>`;
+                    return;
+                }
+
+                container.innerHTML = deals.map(deal => `
+                        <div class="dispute-item">
+                            <div class="dispute-header">
+                                <span class="dispute-title">${deal.title}</span>
+                                <span class="dispute-amount">${deal.amount} ${deal.currency}</span>
+                            </div>
+                            <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">
+                                Status: <span class="deal-status ${deal.status}" style="font-size:10px;">${deal.status}</span>
+                                | Creator: ${deal.creator_id.slice(0,8)}...
+                                ${deal.participant_id ? `| Participant: ${deal.participant_id.slice(0,8)}...` : ''}
+                            </div>
+                            <div class="dispute-actions">
+                                <button class="resolve-btn" onclick="adminResolveDeal('${deal.id}')">${t('adminResolve')}</button>
+                                <button class="cancel-btn" onclick="adminCancelDeal('${deal.id}')">${t('adminCancel')}</button>
+                                <button class="btn-secondary" onclick="openChat('${deal.id}')" style="flex:1;padding:8px;font-size:12px;">💬 Chat</button>
+                            </div>
+                        </div>
+                    `).join('');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function adminResolveDeal(dealId) {
+            if (!confirm('Resolve this deal (complete it)?')) return;
+            try {
+                await api(`/api/deals/${dealId}/admin/complete`, {
+                    method: 'POST',
+                    body: JSON.stringify({ adminId: state.telegramId })
+                });
+                showToast('Deal resolved!');
+                loadDisputes();
+                loadDeals();
+                loadUser();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function adminCancelDeal(dealId) {
+            if (!confirm('Cancel this deal (return funds)?')) return;
+            try {
+                await api(`/api/deals/${dealId}/admin/cancel`, {
+                    method: 'POST',
+                    body: JSON.stringify({ adminId: state.telegramId })
+                });
+                showToast('Deal cancelled, funds returned!');
+                loadDisputes();
+                loadDeals();
+                loadUser();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // BLACKLIST
+        // ============================================================
+        async function blockUser(userId) {
+            try {
+                await api('/api/blacklist', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        userId: state.telegramId,
+                        blockedId: userId
+                    })
+                });
+                showToast('User blocked');
+                loadBlacklist();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function unblockUser(userId) {
+            try {
+                await api('/api/blacklist', {
+                    method: 'DELETE',
+                    body: JSON.stringify({
+                        userId: state.telegramId,
+                        blockedId: userId
+                    })
+                });
+                showToast('User unblocked');
+                loadBlacklist();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        async function loadBlacklist() {
+            try {
+                const list = await api(`/api/blacklist/${state.telegramId}`);
+                state.blacklist = list;
+                if (blacklistContainer) {
+                    if (list.length === 0) {
+                        blacklistContainer.innerHTML =
+                            `<div class="empty-state"><div class="sub">${t('noBlacklist')}</div></div>`;
+                    } else {
+                        blacklistContainer.innerHTML = list.map(item => `
+                                <div class="blacklist-item">
+                                    <span class="bl-user">${item.blocked_id.slice(0,10)}...</span>
+                                    <button class="bl-unblock" onclick="unblockUser('${item.blocked_id}')">${t('unblockUser')}</button>
+                                </div>
+                            `).join('');
+                    }
+                }
+            } catch (err) {
+                console.error('Load blacklist error:', err);
+            }
+        }
+
+        // ============================================================
+        // REQUISITES
+        // ============================================================
+        async function loadRequisites() {
+            try {
+                const reqs = await api(`/api/requisites/${state.telegramId}`);
+                state.requisites = reqs;
+                renderRequisites();
+            } catch (err) {
+                console.error('Load requisites error:', err);
+            }
+        }
+
+        function renderRequisites() {
+            if (!state.requisites || state.requisites.length === 0) {
+                requisitesList.innerHTML = `<div class="empty-state"><div class="sub">No wallets saved</div></div>`;
+                return;
+            }
+
+            requisitesList.innerHTML = state.requisites.map(req => `
+                    <div class="requisite-item">
+                        <div class="req-info">
+                            <div class="req-label">${req.currency}</div>
+                            <div class="req-value">${req.address}</div>
+                        </div>
+                        <div class="req-actions">
+                            <span class="req-copy" onclick="copyText('${req.address}', '${t('copy')}')">${t('copy')}</span>
+                            <span class="req-delete" onclick="deleteRequisite('${req.id}')">✕</span>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        async function deleteRequisite(id) {
+            try {
+                await api(`/api/requisites/${id}`, { method: 'DELETE' });
+                state.requisites = state.requisites.filter(r => r.id != id);
+                renderRequisites();
+                showToast('Wallet deleted');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // TRANSACTIONS
+        // ============================================================
+        async function loadTransactions() {
+            try {
+                const txs = await api(`/api/transactions/${state.telegramId}`);
+                state.transactions = txs;
+                renderTransactions();
+            } catch (err) {
+                console.error('Load transactions error:', err);
+            }
+        }
+
+        function renderTransactions() {
+            if (!state.transactions || state.transactions.length === 0) {
+                transactionsList.innerHTML = `<div class="empty-state"><div class="sub">No transactions yet</div></div>`;
+                return;
+            }
+
+            transactionsList.innerHTML = state.transactions.map(tx => `
+                    <div style="background:var(--bg-card);border-radius:16px;padding:14px 18px;margin-bottom:10px;border:0.5px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <div style="font-weight:500;">${tx.description || tx.type}</div>
+                            <div style="font-size:11px;color:var(--text-tertiary);">${new Date(tx.created_at).toLocaleString()}</div>
+                        </div>
+                        <div style="font-weight:600;color:${tx.type === 'deposit' ? 'var(--success)' : tx.type === 'withdraw' ? 'var(--danger)' : 'var(--accent)'};">
+                            ${tx.type === 'deposit' ? '+' : tx.type === 'withdraw' ? '-' : ''}${tx.amount} ${tx.currency}
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        // ============================================================
+        // DEPOSIT (CRYPTO PAY)
+        // ============================================================
+        let depositInterval = null;
+
+        function openDepositModal() {
+            document.getElementById('depositModal').classList.add('open');
+            document.getElementById('depositStatus').style.display = 'none';
+        }
+
+        function closeDepositModal() {
+            document.getElementById('depositModal').classList.remove('open');
+            if (depositInterval) {
+                clearInterval(depositInterval);
+                depositInterval = null;
+            }
+        }
+
+        async function createDeposit() {
+            const currency = document.getElementById('depositCurrency').value;
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+
+            if (!amount || amount < 1) {
+                showToast(t('depositMin'));
+                return;
+            }
+
+            const statusDiv = document.getElementById('depositStatus');
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'deposit-status pending';
+            statusDiv.innerHTML = `
+                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:middle;animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/></svg>
+                    ${t('depositWaiting')}
+                `;
+
+            try {
+                const result = await api('/api/invoice/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        userId: state.telegramId,
+                        amount: amount,
+                        currency: currency
+                    })
+                });
+
+                state.depositInvoiceId = result.invoice_id;
+
+                statusDiv.className = 'deposit-status pending';
+                statusDiv.innerHTML = `
+                        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:middle;animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/></svg>
+                        ${t('depositWaiting')}
+                        <br><small style="opacity:0.6;">Invoice created, redirecting...</small>
+                    `;
+
+                // Open payment URL
+                window.open(result.url, '_blank');
+
+                // Start checking status
+                if (depositInterval) clearInterval(depositInterval);
+                depositInterval = setInterval(async () => {
+                    try {
+                        const statusRes = await fetch(`/api/invoice/status/${result.invoice_id}`);
+                        const data = await statusRes.json();
+                        if (data.status === 'paid') {
+                            clearInterval(depositInterval);
+                            depositInterval = null;
+                            statusDiv.className = 'deposit-status paid';
+                            statusDiv.innerHTML = `
+                                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:middle;"><polyline points="20 6 9 17 4 12"/></svg>
+                                    ${t('depositSuccess')}
+                                    <br><small>Balance updated! You can close this window.</small>
+                                `;
+                            await loadUser();
+                            await loadTransactions();
+                            showToast('Deposit successful!');
+                            setTimeout(() => closeDepositModal(), 3000);
+                        }
+                    } catch (err) {}
+                }, 5000);
+
+                // Auto close after 5 minutes
+                setTimeout(() => {
+                    if (depositInterval) {
+                        clearInterval(depositInterval);
+                        depositInterval = null;
+                        statusDiv.className = 'deposit-status error';
+                        statusDiv.innerHTML = `
+                                <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:middle;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                Payment timeout. Please try again.
+                            `;
+                    }
+                }, 300000);
+
+            } catch (err) {
+                statusDiv.className = 'deposit-status error';
+                statusDiv.innerHTML = `
+                        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:middle;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        ${t('depositError')}: ${err.message}
+                    `;
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // CALCULATOR
+        // ============================================================
+        function calculateCrypto() {
+            const from = document.getElementById('calcFrom').value;
+            const to = document.getElementById('calcTo').value;
+            const amount = parseFloat(document.getElementById('calcAmount').value) || 1;
+
+            const rates = state.rates;
+            const usdValue = amount * rates[from];
+            const result = usdValue / rates[to];
+
+            document.getElementById('calcResult').style.display = 'block';
+            document.getElementById('calcResultValue').textContent = `${result.toFixed(6)} ${to}`;
+        }
+
+        // ============================================================
+        // CREATE DEAL
+        // ============================================================
+        async function createDeal() {
+            const title = document.getElementById('dealTitleInput').value.trim();
+            const amount = parseFloat(document.getElementById('dealAmountInput').value);
+            const currency = document.getElementById('dealCurrencyInput').value;
+            const description = document.getElementById('dealDescInput').value.trim();
+            const role = document.getElementById('dealRoleInput').value;
+            const privateUser = document.getElementById('privateUserInput').value.trim();
+
+            if (!title || !amount || amount <= 0) {
+                showToast('Please fill all required fields');
+                return;
+            }
+
+            try {
+                if (privateUser) {
+                    await api('/api/deals/private', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            creatorId: state.telegramId,
+                            participantId: privateUser,
+                            title,
+                            amount,
+                            currency,
+                            description,
+                            role
+                        })
+                    });
+                    showToast('🔒 Private deal created!');
+                } else {
+                    await api('/api/deals', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            creatorId: state.telegramId,
+                            title,
+                            amount,
+                            currency,
+                            description,
+                            role
+                        })
+                    });
+                    showToast('Deal created!');
+                }
+
+                document.getElementById('dealTitleInput').value = '';
+                document.getElementById('dealAmountInput').value = '';
+                document.getElementById('dealDescInput').value = '';
+                document.getElementById('privateUserInput').value = '';
+                await loadDeals();
+                await loadUser();
+                navigate('deals');
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        // ============================================================
+        // RATING MODAL
+        // ============================================================
+        function showRatingModal(dealId, userId) {
+            const rating = prompt('Rate this deal (1-5 stars):');
+            if (!rating || isNaN(rating) || rating < 1 || rating > 5) {
+                showToast('Please enter a rating from 1 to 5');
+                return;
+            }
+            const comment = prompt('Leave a comment (optional):');
+            submitRating(dealId, userId, parseInt(rating), comment || '');
+        }
+
+        // ============================================================
+        // UPDATE UI
+        // ============================================================
+        function updateUI() {
+            refCount.textContent = state.referrals;
+            refEarned.textContent = state.earned.toFixed(1);
+            statDeals.textContent = state.deals.length;
+            statReferrals.textContent = state.referrals;
+            statEarned.textContent = state.earned.toFixed(1);
+            profileBalance.textContent = state.balance.toFixed(2);
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    const pk = el.dataset.i18nPlaceholder;
+                    if (pk) el.placeholder = t(pk);
+                    return;
+                }
+                if (el.tagName === 'BUTTON' || el.tagName === 'SPAN') {
+                    el.textContent = t(key);
+                    return;
+                }
+                el.textContent = t(key);
+            });
+
+            const titles = {
+                dashboard: t('tabHome'),
+                profile: t('tabProfile'),
+                create: t('tabCreate'),
+                deals: t('tabDeals'),
+                requisites: t('tabRequisites'),
+                transactions: t('transactions'),
+                themes: t('tabThemes'),
+                calculator: t('tabCalc'),
+                'deal-detail': t('dealDetail')
+            };
+            if (state.currentPage && titles[state.currentPage]) {
+                pageTitle.textContent = titles[state.currentPage];
+            }
+
+            const depositBtn = document.getElementById('depositBtn');
+            if (depositBtn) {
+                depositBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        ${t('deposit')}
+                    `;
+            }
+        }
+
+        // ============================================================
+        // EVENT BINDINGS
+        // ============================================================
+        function bindEvents() {
+            // Language
+            document.getElementById('langBtn').addEventListener('click', () => {
+                setLang(state.lang === 'en' ? 'ru' : 'en');
+                showToast(state.lang === 'ru' ? 'Русский язык' : 'English language');
+            });
+
+            // Currency selector
+            document.querySelectorAll('.currency-selector button').forEach(btn => {
+                btn.addEventListener('click', () => changeCurrency(btn.dataset.currency));
+            });
+
+            // Copy ref link
+            document.getElementById('copyRefBtn').addEventListener('click', () => {
+                copyText(refLinkDisplay.textContent, t('copy'));
+            });
+
+            // Create deal
+            document.getElementById('createDealBtn').addEventListener('click', createDeal);
+
+            // Add requisite
+            document.getElementById('addRequisiteBtn').addEventListener('click', () => {
+                const form = document.getElementById('addRequisiteForm');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            });
+
+            document.getElementById('cancelRequisiteBtn').addEventListener('click', () => {
+                document.getElementById('addRequisiteForm').style.display = 'none';
+            });
+
+            document.getElementById('saveRequisiteBtn').addEventListener('click', async () => {
+                const currency = document.getElementById('reqCurrencyInput').value;
+                const address = document.getElementById('reqAddressInput').value.trim();
+
+                if (!address) {
+                    showToast('Please enter a wallet address');
+                    return;
+                }
+
+                try {
+                    const reqs = await api('/api/requisites', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            userId: state.telegramId,
+                            currency,
+                            address
+                        })
+                    });
+                    state.requisites = reqs;
+                    renderRequisites();
+                    document.getElementById('addRequisiteForm').style.display = 'none';
+                    document.getElementById('reqAddressInput').value = '';
+                    showToast('Wallet saved!');
+                } catch (err) {
+                    showToast('Error: ' + err.message);
+                }
+            });
+
+            // Deposit
+            document.getElementById('depositBtn').addEventListener('click', openDepositModal);
+            document.getElementById('depositSubmitBtn').addEventListener('click', createDeposit);
+
+            // Calculator
+            document.getElementById('calcBtn').addEventListener('click', calculateCrypto);
+            document.getElementById('calcAmount').addEventListener('input', calculateCrypto);
+            document.getElementById('calcFrom').addEventListener('change', calculateCrypto);
+            document.getElementById('calcTo').addEventListener('change', calculateCrypto);
+
+            // Tab navigation
+            document.querySelectorAll('.tab-item').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const page = tab.dataset.tab;
+                    navigate(page);
+                    if (window.Telegram?.WebApp) {
+                        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+                    }
+                });
+            });
+
+            // Menu items navigation
+            document.querySelectorAll('.menu-item[data-nav]').forEach(item => {
+                item.addEventListener('click', () => {
+                    const page = item.dataset.nav;
+                    navigate(page);
+                    if (window.Telegram?.WebApp) {
+                        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+                    }
+                });
+            });
+
+            // Back button
+            document.getElementById('backBtn').addEventListener('click', () => {
+                navigate('deals');
+            });
+
+            // Chat input
+            document.getElementById('chatInput')?.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+
+            // Close modal on overlay click
+            document.getElementById('depositModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeDepositModal();
+                }
+            });
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        async function init() {
+            const savedTheme = localStorage.getItem('swill_theme');
+            setTheme(savedTheme || 'dark');
+
+            const savedLang = localStorage.getItem('swill_lang');
+            setLang(savedLang || 'en');
+
+            loadRates();
+
+            await loadUser();
+            await loadDeals();
+            await loadRequisites();
+            await loadTransactions();
+            await loadBlacklist();
+            await loadRatings();
+
+            bindEvents();
+            navigate('dashboard');
+
+            window.setTheme = setTheme;
+            window.viewDeal = viewDeal;
+            window.inviteToDeal = inviteToDeal;
+            window.acceptDeal = acceptDeal;
+            window.declineDeal = declineDeal;
+            window.completeDeal = completeDeal;
+            window.cancelDeal = cancelDeal;
+            window.escrowDeal = escrowDeal;
+            window.releaseEscrow = releaseEscrow;
+            window.disputeDeal = disputeDeal;
+            window.copyText = copyText;
+            window.deleteRequisite = deleteRequisite;
+            window.blockUser = blockUser;
+            window.unblockUser = unblockUser;
+            window.openChat = openChat;
+            window.sendMessage = sendMessage;
+            window.changeCurrency = changeCurrency;
+            window.createDeal = createDeal;
+            window.loadDisputes = loadDisputes;
+            window.loadAllDeals = loadAllDeals;
+            window.adminResolveDeal = adminResolveDeal;
+            window.adminCancelDeal = adminCancelDeal;
+            window.showRatingModal = showRatingModal;
+            window.submitRating = submitRating;
+            window.calculateCrypto = calculateCrypto;
+            window.openDepositModal = openDepositModal;
+            window.closeDepositModal = closeDepositModal;
+            window.createDeposit = createDeposit;
+
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.ready();
+                Telegram.WebApp.expand();
+                Telegram.WebApp.enableClosingConfirmation();
+            }
+
+            console.log('[SWILL]: Premium OTC Platform initialized');
+            console.log('User:', state.telegramId);
+            console.log('Admin:', state.isAdmin);
+            console.log('Theme:', state.theme);
+            console.log('Language:', state.lang);
+        }
+
+        // Add spin animation
+        const style = document.createElement('style');
+        style.textContent = `
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `;
+        document.head.appendChild(style);
+
+        // Start
+        init();
+    </script>
+</body>
+</html>
